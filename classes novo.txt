@@ -1,0 +1,458 @@
+import abc
+
+class Lanchonete:
+    def __init__(self):
+	self.dc_cliente = {}
+        self.dc_funcionario = {}
+        self.dc_pedido = {}
+        self.preco_tot = []
+
+    def adcc_cliente(self, nome, cpf, dt_nasc):
+	cliente = Cliente(nome, cpf, dt_nasc)
+	if cpf in self.dc_cliente.keys():
+	    return False, 'Um Cliente já possui este CPF!'
+        else:
+	    self.dc_cliente[cpf] = cliente
+            return True, 'Cliente cadastrado com sucesso! ✅'
+
+    def adcc_funcionario(self,nome, cpf, dt_nasc, salario, cargo):
+	f = Funcionario(nome, cpf, dt_nasc, salario, cargo)
+	if cpf in self.dc_funcionario.keys():
+	    return False, 'Um Funcionario já possui este CPF!'
+        else:
+	    self.dc_funcionario[cpf] = f
+            return True, 'Funcionario cadastrado com sucesso! ✅'
+
+    def realizar_pedido(cpf):
+        if cpf not in self.dc_cliente.keys():
+            return False, 'CPF do cliente não foi cadastrado!'
+        elif cpf in self.dc_cliente.keys():
+	    self.preco_tot.clear()
+            while True:
+                # cliente = dc_cliente[cpf]
+                print(f'Muito bem {cliente.nome}, Vamos realizar o seu pedido!')
+                mostrar_cardapio()
+                print('11-Calcular preço')
+                print('12-Finalizar pedido')
+                print('')
+                opc = int(input(f'Escolha um lanche {cliente.nome}:'))
+                if opc == 1:
+                    print(f'HUMMMM! Hambuguer, Ótima escolha {cliente.nome}')
+                    hamburguer()
+                    escolha = int(input('Escolha um tipo de Hambuguer:'))
+                    if escolha == 1:
+                        print('X_Bacon')
+                        preco = desconto = preco_desconto = 0
+                        valor = 12.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 2:
+                        print('X_Salada')
+                        preco = desconto = preco_desconto = 0
+                        valor = 13.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 3:
+                        print('X_Delicia')
+                        preco = desconto = preco_desconto = 0
+                        valor = 14.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+                    elif escolha == 4:
+                        print('X_Calabresa')
+                        preco = desconto = preco_desconto = 0
+                        valor = 15.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+                elif opc == 2:
+                    print(f'HUMMMM! Pizza, Ótima escolha {cliente.nome}')
+                    pizza()
+                    escolha = int(input('Escolha um tipo de Pizza:'))
+                    if escolha == 1:
+                        print('Pizza Mexicana:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 50.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+                    elif escolha == 2:
+                        print('Pizza de Frango:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 40.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 3:
+                        print('Pizza de Calabresa:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 40.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 4:
+                        print('Pizza Nordestina:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 50.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                elif opc == 3:
+                    print(f'HUMMMM! Coxinha, Ótima escolha {cliente.nome}')
+                    coxinha()
+                    escolha = int(input('Escolha um tipo de Coxinha:'))
+                    if escolha == 1:
+                        print('Coxinha de Frango:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 3.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+                    elif escolha == 2:
+                        print('Coxinha de Frango com Cheddar:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 4.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 3:
+                        print('Coxinha de Frango com catupiry:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 4.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 4:
+                        print('Coxinha de Carne:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 3.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+                elif opc == 4:
+                    print(f'HUMMMM! Bomba, Ótima escolha {cliente.nome}')
+                    preco = desconto = preco_desconto = 0
+                    valor = 3.00
+                    p = Pedido(preco, desconto, preco_desconto, cliente)
+                    self.dc_pedido[cliente.cpf] = p
+                    self.preco_tot.append(valor)
+                    return True, 'Pedido realizado!'
+                elif opc == 5:
+                    print(f'HUMMMM! Pastel, Ótima escolha {cliente.nome}')
+                    pastel()
+                    escolha = int(input('Escolha um tipo de Pastel:'))
+                    if escolha == 1:
+                        print('Pastel de Frango:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 3.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 2:
+                        print('Pastel de Frango com Cheddar:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 4.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 3:
+                        print('Pastel de Frango com catupiry:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 4.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 4:
+                        print('Pastel de Carne:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 3.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                elif opc == 6:
+                    print(f'HUMMMM! Salsichão, Ótima escolha {cliente.nome}')
+                    preco = desconto = preco_desconto = 0
+                    valor = 3.00
+                    p = Pedido(preco, desconto, preco_desconto, cliente)
+                    self.dc_pedido[cliente.cpf] = p
+                    self.preco_tot.append(valor)
+                    return True, 'Pedido realizado!'
+
+                elif opc == 7:
+                    print(f'HUMMMM! Refrigerante, Ótima escolha {cliente.nome}')
+                    refrigerante()
+                    escolha = int(input('Escolha um tipo de Pastel:'))
+                    if escolha == 1:
+                        print('Coca cola:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 8.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 2:
+                        print('Guaraná:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 8.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 3:
+                        print('Fanta laranja:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 8.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                    elif escolha == 4:
+                        print('Fanta uva:')
+                        preco = desconto = preco_desconto = 0
+                        valor = 8.00
+                        p = Pedido(preco, desconto, preco_desconto, cliente)
+                        self.dc_pedido[cliente.cpf] = p
+                        self.preco_tot.append(valor)
+                        return True, 'Pedido realizado!'
+
+                elif opc == 8:
+                    print(f'HUMMMM! Água mineral, Ótima escolha {cliente.nome}')
+                    preco = desconto = preco_desconto = 0
+                    valor = 2.00
+                    p = Pedido(preco, desconto, preco_desconto, cliente)
+                    self.dc_pedido[cliente.cpf] = p
+                    self.preco_tot.append(valor)
+                    return True, 'Pedido realizado!'
+
+                elif opc == 9:
+                    print(f'HUMMMM! Água de coco, Ótima escolha {cliente.nome}')
+                    preco = desconto = preco_desconto = 0
+                    valor = 4.00
+                    p = Pedido(preco, desconto, preco_desconto, cliente)
+                    self.dc_pedido[cliente.cpf] = p
+                    self.preco_tot.append(valor)
+                    return True, 'Pedido realizado!'
+                elif opc == 10:
+                    print(f'HUMMMM! Cerveja, Ótima escolha {cliente.nome}')
+                    preco = desconto = preco_desconto = 0
+                    valor = 8.00
+                    p = Pedido(preco, desconto, preco_desconto, cliente)
+                    self.dc_pedido[cliente.cpf] = p
+                    self.preco_tot.append(valor)
+                    return True, 'Pedido realizado!'
+
+                elif opc == 11:
+                    retorno = self.dc_pedido[cliente.cpf].calcular_preco(self.preco_tot)
+                    if retorno <= 20:
+                        print('Preço:', retorno)
+
+                    elif retorno > 20 and retorno <= 50:
+                        des = 2/100
+                        desct = self.dc_pedido[cliente.cpf].calcular_desconto(des)
+                        cal_des = self.dc_pedido[cliente.cpf].calcular_preco_com_desconto()
+                        print('Preço:', retorno)
+                        print('desconto:',desct)
+                        print('PREÇO FINAL = ', cal_des)
+
+                    elif retorno > 50 and retorno <= 100:
+                        des = 3/100
+                        desct = self.dc_pedido[cliente.cpf].calcular_desconto(des)
+                        cal_des = self.dc_pedido[cliente.cpf].calcular_preco_com_desconto()
+                        print('Preço:', retorno)
+                        print('desconto:', desct)
+                        print('PREÇO FINAL = ', cal_des)
+
+                    elif retorno > 100 and retorno <= 200:
+                        des = 4/100
+                        desct = self.dc_pedido[cliente.cpf].calcular_desconto(des)
+                        cal_des = self.dc_pedido[cliente.cpf].calcular_preco_com_desconto()
+                        print('Preço:', retorno)
+                        print('desconto:', desct)
+                        print('PREÇO FINAL = ', cal_des)
+
+                    elif retorno > 200:
+                        des = 5/100
+                        desct = self.dc_pedido[cliente.cpf].calcular_desconto(des)
+                        cal_des = self.dc_pedido[cliente.cpf].calcular_preco_com_desconto()
+                        print('Preço:', retorno)
+                        print('desconto:', desct)
+                        print('PREÇO FINAL = ', cal_des)
+
+
+
+                elif opc == 12:
+                    cont += 1
+                    print(f'Seu pedido foi o {cont}º da lista')
+                    print(f'Obrigado pela preferência! {cliente.nome}')
+                    break
+                else:
+                    print('opção inválida! escolha uma opção do cardápio.')
+
+     def consultar_pedido(cpf)
+	if cpf not in self.dc_pedido.keys():
+            print('Cliente não realizou um pedido!')
+        elif cpf in self.dc_pedido.keys():
+            print('CPF = ', cpf)
+            print('cliente = ', self.dc_pedido[cpf].cliente.nome)
+            print('preço = ', self.dc_pedido[cpf].preco)
+            print('desconto = ', self.dc_pedido[cpf].desconto)
+            if self.dc_pedido[cpf].preco_desconto != 0:
+                return True, 'VALOR FINAL = ', self.dc_pedido[cpf].preco_desconto
+            else:
+                return True, 'VALOR FINAL = ', self.dc_pedido[cpf].preco
+
+
+
+class Pessoa:
+    def __init__(self, nome, cpf, dt_nasc):
+        self._nome = nome
+        self._cpf = cpf
+        self._dt_nasc = dt_nasc
+
+    @property
+    def nome(self):
+        return self._nome
+
+    @nome.setter
+    def nome(self, p_nome):
+        self._nome = p_nome
+
+    @property
+    def cpf(self):
+        return self._cpf
+
+    @cpf.setter
+    def cpf(self, p_cpf):
+        self._cpf = p_cpf
+
+    @property
+    def datanascimento(self):
+        return self._dt_nasc
+
+    @datanascimento.setter
+    def datanascimento(self, p_dtnasc):
+        self._dt_nasc = p_dtnasc
+
+
+class Funcionario(Pessoa):
+    def __init__(self, nome, cpf, dt_nasc, salario, cargo):
+        super().__init__(nome, cpf, dt_nasc)
+        self._salario = salario
+        self._cargo = cargo
+
+    @property
+    def salario(self):
+        return self._salario
+
+    @salario.setter
+    def salario(self, valor):
+        if (self._salario < 0):
+            print('salario não pode ser negativo')
+        else:
+            self._salario = valor
+
+    @property
+    def cargo(self):
+        return self._cargo
+
+    @cargo.setter
+    def cargo(self, crg):
+        self._cargo = crg
+
+
+class Cliente(Pessoa):
+    def __init__(self, nome, cpf, dt_nasc):
+        super().__init__(nome, cpf, dt_nasc)
+
+
+class Pedido:
+    def __init__(self, preco, desconto, preco_desconto, cliente):
+        self._preco = preco
+        self._desconto = desconto
+        self._preco_desconto = preco_desconto
+        self._cliente = cliente
+
+
+    @property
+    def preco(self):
+        return self._preco
+
+    @preco.setter
+    def preco(self, prc):
+        self._preco = prc
+
+    @property
+    def desconto(self):
+        return self._desconto
+
+    @desconto.setter
+    def desconto(self, dsc):
+        self._desconto = dsc
+
+    @property
+    def preco_desconto(self):
+        return self._preco_desconto
+
+    @preco_desconto.setter
+    def preco_desconto(self, prc_des):
+        self._preco_desconto = prc_des
+
+    @property
+    def cliente(self):
+        return self._cliente
+
+    @cliente.setter
+    def cliente(self, clie):
+        self._cliente = clie
+
+    def calcular_preco(self, preco_tot):
+        val = sum(preco_tot)
+        self._preco = val
+        return self._preco
+
+    def calcular_desconto(self, des):
+        self._desconto = self._preco * des
+        return self._desconto
+
+    def calcular_preco_com_desconto(self):
+        self._preco_desconto = self._preco - self._desconto
+        return self._preco_desconto
+
+
+class Desconto(abc.ABC):
+    @abc.abstractmethod
+    def calcular_desconto(self):
+        pass
